@@ -30,6 +30,7 @@ namespace API_Application_1.Controllers
         [HttpPost]
         public IActionResult CreateMessage([FromBody] Message message)
         {
+            message.Id=Guid.NewGuid();
             repo.Add(message);
             return Ok(message);
         }
