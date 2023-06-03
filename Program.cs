@@ -1,5 +1,6 @@
 using API_Application_1.Interfaces;
 using API_Application_1.Repository;
+using Azure.Identity;
 using MongoDB.GenericRepository.Context;
 using MongoDB.GenericRepository.Interfaces;
 
@@ -9,9 +10,12 @@ namespace API_Application_1
     {
         public static void Main(string[] args)
         {
+            
+            var keyvaultUri =  new Uri("https://KEYNST01.vault.azure.net/");
+             
             var builder = WebApplication.CreateBuilder(args);
-
             // Add services to the container.
+            builder.Configuration.AddAzureKeyVault(keyvaultUri, new DefaultAzureCredential());
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
