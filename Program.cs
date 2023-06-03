@@ -1,9 +1,7 @@
 using API_Application_1.Interfaces;
-using API_Application_1.Model;
 using API_Application_1.Repository;
 using MongoDB.GenericRepository.Context;
 using MongoDB.GenericRepository.Interfaces;
-using MongoDB.GenericRepository.Repository;
 
 namespace API_Application_1
 {
@@ -26,11 +24,12 @@ namespace API_Application_1
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //if (app.Environment.IsDevelopment())
+            //{
+               
+            //}
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
