@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace MongoDB.GenericRepository.Persistence
 {
@@ -10,7 +12,7 @@ namespace MongoDB.GenericRepository.Persistence
             ProductMap.Configure();
             MessageMap.Configure();
             BsonDefaults.GuidRepresentation = GuidRepresentation.CSharpLegacy;
-            //BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
+            // BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
 
             // Conventions
             var pack = new ConventionPack

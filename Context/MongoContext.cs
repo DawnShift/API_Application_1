@@ -1,10 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.GenericRepository.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MongoDB.GenericRepository.Context
 {
@@ -30,13 +27,8 @@ namespace MongoDB.GenericRepository.Context
 
             using (Session = await MongoClient.StartSessionAsync())
             {
-                Session.StartTransaction();
-
                 var commandTasks = _commands.Select(c => c());
-
                 await Task.WhenAll(commandTasks);
-
-                await Session.CommitTransactionAsync();
             }
 
             return _commands.Count;
@@ -44,14 +36,14 @@ namespace MongoDB.GenericRepository.Context
 
         private void ConfigureMongo()
         {
+
+
             if (MongoClient != null)
             {
                 return;
             }
-
-            // Configure mongo (You can inject the config, just to simplify)
+            // Configvify)
             MongoClient = new MongoClient(_configuration["MongoSettings:Connection"]);
-
             Database = MongoClient.GetDatabase(_configuration["MongoSettings:DatabaseName"]);
         }
 
